@@ -6,9 +6,10 @@ public:
   /*
   * Errors
   */
-  double p_error;
-  double i_error;
-  double d_error;
+  double p_error = 0;
+  double i_error = 0;
+  double d_error = 0;
+  double total_error = 0;
 
   /*
   * Coefficients
@@ -16,6 +17,17 @@ public:
   double Kp;
   double Ki;
   double Kd;
+  
+  bool twiddle;
+	int step;
+	int eval_steps;
+	double p[3];
+	double dp[3];
+	double tol;
+	int i = 0;
+	double best_err;
+	bool try_first;
+	bool second_run;
 
   /*
   * Constructor
@@ -41,6 +53,7 @@ public:
   * Calculate the total PID error.
   */
   double TotalError();
+  void Twiddle();
 };
 
 #endif /* PID_H */
